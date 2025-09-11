@@ -1,0 +1,30 @@
+# SAS packages
+saspy
+swat
+sasctl
+
+# Data science packages
+pandas
+numpy
+scikit-learn
+matplotlib
+seaborn
+jupyter
+plotly
+dash
+
+# Advanced analytics packages
+xgboost
+lightgbm
+tensorflow
+keras
+
+# Utility packages
+pyyaml
+requests
+joblib
+
+# Development packages
+pytest
+black
+flake8
