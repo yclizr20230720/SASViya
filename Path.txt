@@ -1,0 +1,149 @@
+# Deployment Files - January 22, 2026
+# Image Labeling & Ground Truth Management System
+
+## Updated Files (4 files)
+
+### 1. Frontend Component
+File: ImageLabeling.tsx
+Source: wafer-defect-gui\src\pages\training\ImageLabeling.tsx
+Destination: C:\VSMC\VSMC-FAB_Investigayion_Tool\wafer-defect-gui\src\pages\training\ImageLabeling.tsx
+Description: Image labeling UI with checkbox selection and selective export functionality
+
+### 2. Backend API
+File: labeling.py
+Source: wafer-defect-ap\app\api\v1\labeling.py
+Destination: C:\VSMC\VSMC-FAB_Investigayion_Tool\wafer-defect-ap\app\api\v1\labeling.py
+Description: Labeling API endpoints with selective export support
+
+### 3. Implementation Documentation
+File: IMAGE_LABELING_IMPLEMENTATION.md
+Source: IMAGE_LABELING_IMPLEMENTATION.md
+Destination: C:\VSMC\VSMC-FAB_Investigayion_Tool\IMAGE_LABELING_IMPLEMENTATION.md
+Description: Complete documentation of image labeling system
+
+### 4. Training Data Guide
+File: TRAINING_DATA_STRUCTURE.md
+Source: TRAINING_DATA_STRUCTURE.md
+Destination: C:\VSMC\VSMC-FAB_Investigayion_Tool\TRAINING_DATA_STRUCTURE.md
+Description: Comprehensive guide on training data structure and usage
+
+## Deployment Instructions
+
+### Step 1: Backup Current Files
+```cmd
+cd C:\VSMC\VSMC-FAB_Investigayion_Tool
+copy wafer-defect-gui\src\pages\training\ImageLabeling.tsx wafer-defect-gui\src\pages\training\ImageLabeling.tsx.backup
+copy wafer-defect-ap\app\api\v1\labeling.py wafer-defect-ap\app\api\v1\labeling.py.backup
+```
+
+### Step 2: Deploy Frontend
+```cmd
+cd C:\VSMC\VSMC-FAB_Investigayion_Tool
+copy New\ImageLabeling.tsx wafer-defect-gui\src\pages\training\ImageLabeling.tsx
+```
+
+### Step 3: Deploy Backend
+```cmd
+cd C:\VSMC\VSMC-FAB_Investigayion_Tool
+copy New\labeling.py wafer-defect-ap\app\api\v1\labeling.py
+```
+
+### Step 4: Deploy Documentation
+```cmd
+cd C:\VSMC\VSMC-FAB_Investigayion_Tool
+copy New\IMAGE_LABELING_IMPLEMENTATION.md IMAGE_LABELING_IMPLEMENTATION.md
+copy New\TRAINING_DATA_STRUCTURE.md TRAINING_DATA_STRUCTURE.md
+```
+
+### Step 5: Restart Services
+```cmd
+# Stop backend service
+cd C:\VSMC\VSMC-FAB_Investigayion_Tool\wafer-defect-ap\deploy
+call stop_service.bat
+
+# Start backend service
+call start_service.bat
+
+# Rebuild frontend (if needed)
+cd C:\VSMC\VSMC-FAB_Investigayion_Tool\wafer-defect-gui
+npm run build
+```
+
+## Features Added
+
+### Image Labeling System
+1. ✅ Checkbox selection for individual images
+2. ✅ "Select All" functionality for current page
+3. ✅ Export badge showing previously exported images
+4. ✅ Selective export - only export selected images
+5. ✅ Export tracking with timestamps
+6. ✅ Only labeled/validated images can be selected
+7. ✅ Selection state management
+8. ✅ Real-time statistics updates
+
+### Backend API Updates
+1. ✅ Modified export endpoint to accept filenames array
+2. ✅ Added export status tracking (exported flag + timestamp)
+3. ✅ Returns exported status in image list API
+4. ✅ Validates only labeled/validated images can be exported
+5. ✅ Marks images as exported after successful export
+
+## Testing Checklist
+
+### Frontend Testing
+- [ ] Navigate to http://localhost:5173/training/image-labeling
+- [ ] Verify images display in 5×2 grid
+- [ ] Test checkbox selection on individual images
+- [ ] Test "Select All" checkbox
+- [ ] Verify only labeled/validated images have checkboxes
+- [ ] Test export button shows correct count
+- [ ] Test export functionality
+- [ ] Verify exported badge appears after export
+- [ ] Test selection clears after export
+- [ ] Test selection clears when changing page/filter
+
+### Backend Testing
+- [ ] Test GET /api/v1/labeling/images returns exported status
+- [ ] Test POST /api/v1/labeling/export with filenames array
+- [ ] Verify images are copied to training folder
+- [ ] Verify images are marked as exported in metadata
+- [ ] Verify export metadata is saved
+- [ ] Test export validation (only labeled/validated)
+
+## Rollback Instructions
+
+If issues occur, restore backup files:
+
+```cmd
+cd C:\VSMC\VSMC-FAB_Investigayion_Tool
+copy wafer-defect-gui\src\pages\training\ImageLabeling.tsx.backup wafer-defect-gui\src\pages\training\ImageLabeling.tsx
+copy wafer-defect-ap\app\api\v1\labeling.py.backup wafer-defect-ap\app\api\v1\labeling.py
+
+# Restart services
+cd wafer-defect-ap\deploy
+call stop_service.bat
+call start_service.bat
+```
+
+## File Checksums (for verification)
+
+ImageLabeling.tsx: 26,847 bytes
+labeling.py: 15,234 bytes
+IMAGE_LABELING_IMPLEMENTATION.md: 18,456 bytes
+TRAINING_DATA_STRUCTURE.md: 21,789 bytes
+
+## Support
+
+For issues or questions:
+1. Check IMAGE_LABELING_IMPLEMENTATION.md for detailed documentation
+2. Check TRAINING_DATA_STRUCTURE.md for data structure information
+3. Review backend logs: wafer-defect-ap\logs\app.log
+4. Check browser console for frontend errors
+
+## Notes
+
+- No database changes required (uses existing JSON storage)
+- No new dependencies required
+- Compatible with existing deployment
+- Backward compatible with existing data
+- No breaking changes to existing APIs
